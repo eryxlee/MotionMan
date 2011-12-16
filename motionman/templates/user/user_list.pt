@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" xmlns:tal="http://xml.zope.org/namespaces/tal">
+<head>
+  <title>User Admin</title>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+  <link rel="shortcut icon" href="${request.static_url('motionman:static/favicon.ico')}" />
+</head>
+<body>
+<h1>User Admin (user list)</h1>
+<a href="${request.route_url('user_list')}">user admin</a>  <a href="${request.route_url('setting_edit')}">settings</a>
+<br>
+<br>
+<br>
+<table >
+  <tr tal:repeat="item users">
+      <td tal:content="repeat.item.number">1</td>
+      <td tal:content="item.name">Widget</td>
+      <td tal:content="item.email">$1.50</td>
+      <td>
+        [<a href="#" tal:attributes="href string:${request.route_url('user_edit', id=item.id)}">edit</a>]
+        [<a href="#" tal:attributes="href string:${request.route_url('user_delete', id=item.id)}">delete</a>]
+      </td>
+  </tr>
+</table>
+<a href="${request.route_url('user_add')}">add a user</a>
+</body>
+</html>

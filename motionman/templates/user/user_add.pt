@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" xmlns:tal="http://xml.zope.org/namespaces/tal">
+<head>
+  <title>User Admin</title>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+  <link rel="shortcut icon" href="${request.static_url('motionman:static/favicon.ico')}" />
+</head>
+<body>
+<h1>User Admin</h1>
+<a href="${request.route_url('user_list')}">user admin</a>  <a href="${request.route_url('setting_edit')}">settings</a>
+<br>
+<br>
+<br>
+${renderer.begin(request.resource_url(request.root, 'user/add'))}
+  <fieldset>
+    <legend>User properties:</legend>
+    email:${renderer.text("email", size=64)}${renderer.errorlist("email")}<br />
+    name: ${renderer.text("name", size=64)}${renderer.errorlist("name")}<br />
+    vote weight: ${renderer.text("vote_weight", size=64)}${renderer.errorlist("vote_weight")}<br />
+  </fieldset>
+<br>
+<input name="submit" type="submit" value="  save  ">
+${renderer.end()}
+
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" xmlns:tal="http://xml.zope.org/namespaces/tal">
+<head>
+  <title>Motion Vote</title>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+  <link rel="shortcut icon" href="${request.static_url('motionman:static/favicon.ico')}" />
+</head>
+<body>
+<h1 align="center" tal:condition="participant.status==2">Opportunity used, please wait for the last result.</h1>
+<p align="center" tal:condition="participant.status==2"><a href="${request.route_url('motion_list')}">motions</a></p>
+<h1 align="center" tal:condition="participant.status==1">Please vote on this topic</h1>
+<form name="voteform" action="/motion/vote/${motion.id}/${request.matchdict['chips']}" tal:condition="participant.status==1">
+<table width="94%" style="border-style:dashed; border-width:1px; border-color:#0000cc;" align="center">
+  <tr>
+    <td width="200"><font size="5" tal:content="motion.id">MM-2011-000254</font></td>
+    <td><strong><font size="5" tal:content="motion.title">How to produce extreme new machine?</font></strong></td>
+    <td width="250" align="left"></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;<font size="3" tal:content="motion.desc">How to produce extreme new machine?</font></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><strong><font size="5">Vote options:</font></strong></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr tal:condition="motion.options" tal:repeat="opt motion.options">
+    <td>&nbsp;</td>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;<font size="3" tal:content="string:${repeat.opt.number}. ${opt.value}">1. recruit more bright peoples.</font></td>
+    <td><input type="radio" name="vote" value="${opt.id}"></td>
+  </tr>
+</table>
+<br>
+<table width="94%" style="border-style:dashed; border-width:1px; border-color:#ffffff;" align="center">
+  <tr>
+    <td align="center"><input type="submit" name="submit" value="  submit  "></td>
+  </tr>
+</table>
+</form>
+</body>
+</html>

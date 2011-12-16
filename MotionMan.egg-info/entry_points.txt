@@ -1,0 +1,6 @@
+      [paste.app_factory]
+      main = motionman:main
+
+      [paste.app_install]
+      main = motionman.lib.utils:PyramidInstaller
+      

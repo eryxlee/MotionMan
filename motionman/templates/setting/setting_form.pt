@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" xmlns:tal="http://xml.zope.org/namespaces/tal">
+<head>
+  <title>Settings</title>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+  <link rel="shortcut icon" href="${request.static_url('motionman:static/favicon.ico')}" />
+</head>
+<body>
+<h1>Motion Settings</h1>
+<a href="/user/list">user admin</a>  <a href="/setting/edit">settings</a>
+<br>
+<br>
+<br>
+${renderer.begin(request.route_url('setting_edit'))}
+  <fieldset>
+    <legend>Motion ID Prefix:</legend>
+    motion id prefix:${renderer.text("motion_id_prefix", size=64)}${renderer.errorlist("motion_id_prefix")}<br />
+  </fieldset>
+<br>
+  <fieldset>
+    <legend>Password:</legend>
+    admin password: ${renderer.text("admin_password", size=64)}${renderer.errorlist("admin_password")}<br />
+    user password: ${renderer.text("user_password", size=64)}${renderer.errorlist("user_password")}<br />
+  </fieldset>
+<br>
+  <fieldset>
+    <legend>mail:</legend>
+    gmail account: ${renderer.text("mail_sender", size=64)}${renderer.errorlist("mail_sender")}<br />
+    account password: ${renderer.text("mail_smtppassword", size=64)}${renderer.errorlist("mail_smtppassword")}<br />
+    mail template: ${renderer.textarea("mail_template", cols=120, rows=8)}${renderer.errorlist("mail_template")}<br />
+  </fieldset>
+  <input name="submit" type="submit" value="  save  ">
+${renderer.end()}
+
+
+</body>
+</html>

@@ -1,0 +1,6 @@
+pyramid==1.1
+SQLAlchemy==0.7.1
+transaction==1.1.1
+repoze.tm2>=1.0b1
+zope.sqlalchemy
+WebError==0.10.3

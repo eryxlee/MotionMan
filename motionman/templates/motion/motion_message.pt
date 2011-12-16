@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" xmlns:tal="http://xml.zope.org/namespaces/tal">
+<head>
+  <title>Motion</title>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+  <link rel="shortcut icon" href="${request.static_url('motionman:static/favicon.ico')}" />
+</head>
+<body>
+<h1 align="center">Motion messages</h1>
+<table width="94%" style="border-style:dashed; border-width:1px; border-color:#ffffff;" align="center">
+  <tr>
+    <td align="right"><a href="/motion/list" tal:attributes="href request.route_url('motion_list')">Back to motions<a></td>
+  </tr>
+</table>
+<table width="94%" style="border-style:dashed; border-width:1px; border-color:#0000cc;" align="center">
+  <tr>
+    <td width="100"><font size="5" tal:content="motion.id">MM-2011-000254</font></td>
+    <td><strong><font size="5" tal:content="motion.title">How to produce extreme new machine?</font></strong></td>
+    <td width="250" align="left">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;<font size="3" tal:content="motion.desc">How to produce extreme new machine?</font></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><strong><font size="5">Vote options:</font></strong></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr tal:condition="motion.options" tal:repeat="opt motion.options">
+    <td>&nbsp;</td>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;<font size="3" tal:content="string:${repeat.opt.number}. ${opt.value}">1. recruit more bright peoples.</font></td>
+    <td align="left">
+      <table width="250" border="0" tal:condition="motion.finished()">
+        <tr>
+          <td bgcolor="00ff00" width="80" tal:condition="opt.percent()!=0" tal:attributes='width opt.percent()*2'>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td width="50" tal:content='opt.percent()'>100</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><strong><font size="5">Messages:</font></strong></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td colspan=2>
+      <table width="100%" border="0" tal:condition="motion.messages">
+        <tr tal:condition="motion.messages" tal:repeat="mess motion.messages">
+          <td>&nbsp;&nbsp;&nbsp;&nbsp;
+          <span tal:content="repeat.mess.number">1</span>. 
+          <span tal:content="mess.message">messages</span>&nbsp;&nbsp;
+          <sub tal:content="mess.create_time.strftime('%Y-%m-%d %H:%M:%S')">2011.09.01</sub>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><strong><font size="5">New message:</font></strong></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td colspan=2>
+      <form action="/motion/message/1" method="post" tal:attributes="action request.route_url('motion_message', id=motion.id)">
+        <textarea name="message" cols=90 rows=6></textarea><br/>
+        <input type="submit" name="submit" value="  submit  ">
+      </form>
+    </td>
+  </tr>
+</table>
+<br>
+</body>
+</html>

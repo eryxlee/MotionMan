@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" xmlns:tal="http://xml.zope.org/namespaces/tal">
+<head>
+  <title>Motion</title>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+  <link rel="shortcut icon" href="${request.static_url('motionman:static/favicon.ico')}" />
+</head>
+<body>
+<h1 align="center">Motion bulletin board</h1>
+<table width="94%" style="border-style:dashed; border-width:1px; border-color:#ffffff;" align="center">
+  <tr>
+    <td align="right"><a href="${request.route_url('motion_add')}">New motion<a></td>
+  </tr>
+  <tr>
+    <td align="right">&nbsp;</td>
+  </tr>
+</table>
+<span tal:condition="motions" tal:repeat="mot motions">
+<table width="94%" style="border-style:dashed; border-width:1px; border-color:#0000cc;" align="center">
+  <tr>
+    <td width="100"><font size="5" tal:content="mot.id">MM-2011-000254</font></td>
+    <td><strong><font size="5" tal:content="mot.title">How to produce extreme new machine?</font></strong></td>
+    <td width="250" align="right">[<a href="/motion/message/1" tal:attributes="href request.route_url('motion_message', id=mot.id)">view messages</a>]</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;<font size="3" tal:content="mot.desc">How to produce extreme new machine?</font></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td><strong><font size="5">Vote options:</font></strong></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr tal:condition="mot.options" tal:repeat="opt mot.options">
+    <td>&nbsp;</td>
+    <td>&nbsp;&nbsp;&nbsp;&nbsp;<font size="3" tal:content="string:${repeat.opt.number}. ${opt.value}">1. recruit more bright peoples.</font></td>
+    <td align="left">
+      <table width="250" border="0" tal:condition="mot.finished()">
+        <tr>
+          <td bgcolor="00ff00" width="80" tal:condition="opt.percent()!=0" tal:attributes='width opt.percent()*2'>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td width="50" tal:content='opt.percent()'>100</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<br>
+</span>
+<table width="94%" style="border-style:dashed; border-width:1px; border-color:#ffffff;" align="center">
+  <tr>
+    <td align="center">[First][prev]1[next][last]</td>
+  </tr>
+</table>
+</body>
+</html>
