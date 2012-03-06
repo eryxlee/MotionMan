@@ -1,16 +1,10 @@
-#!D:\pylons\mydevenv\Scripts\python.exe
-# EASY-INSTALL-ENTRY-SCRIPT: 'pastescript==1.7.3','console_scripts','paster'
-
-
-__requires__ = 'pastescript'
+#!/Users/eryxlee/python/env-saepyramid/bin/python
+# EASY-INSTALL-ENTRY-SCRIPT: 'pyramid==1.3a7','console_scripts','pserve'
+__requires__ = 'pyramid==1.3a7'
 import sys
 from pkg_resources import load_entry_point
 
 sys.exit(
-   load_entry_point('pastescript', 'console_scripts', 'paster')()
+   load_entry_point('pyramid==1.3a7', 'console_scripts', 'pserve')()
 )
 
-
-#from paste.script.serve import ServeCommand
-
-#ServeCommand("serve").run(["development.ini"])

@@ -8,12 +8,19 @@ README = open(os.path.join(here, 'README.txt')).read()
 CHANGES = open(os.path.join(here, 'CHANGES.txt')).read()
 
 requires = [
-    'pyramid==1.1',
-    'SQLAlchemy==0.7.1',
-    'transaction==1.1.1',
-    'repoze.tm2>=1.0b1', # default_commit_veto
+    'pyramid',
+    'SQLAlchemy',
+    'transaction',
+    'pyramid_tm',
+    'pyramid_debugtoolbar',
     'zope.sqlalchemy',
-    'WebError==0.10.3',
+    'waitress',
+#    'pyramid>=1.1',
+#    'SQLAlchemy>=0.7.1',
+#    'transaction>=1.1.1',
+#    'repoze.tm2>=1.0b1', # default_commit_veto
+#    'zope.sqlalchemy',
+#    'WebError>=0.10.3',
     ]
 
 if sys.version_info[:3] < (2,5,0):
