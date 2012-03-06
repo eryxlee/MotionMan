@@ -3,7 +3,7 @@
 <head>
   <title>Settings</title>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-  <link rel="shortcut icon" href="${request.static_url('motionman:static/favicon.ico')}" />
+  <link rel="shortcut icon" href="${request.static_path('motionman:static/favicon.ico')}" />
 </head>
 <body>
 <h1>Motion Settings</h1>
@@ -11,7 +11,7 @@
 <br>
 <br>
 <br>
-${renderer.begin(request.route_url('setting_edit'))}
+${renderer.begin(request.route_path('setting_edit'))}
   <fieldset>
     <legend>Motion ID Prefix:</legend>
     motion id prefix:${renderer.text("motion_id_prefix", size=64)}${renderer.errorlist("motion_id_prefix")}<br />

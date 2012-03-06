@@ -5,7 +5,6 @@ Created on Aug 31, 2011
 '''
 
 from pyramid.view import view_config
-from pyramid.url import route_url
 
 from formencode import Schema, validators, ForEach
 from pyramid.httpexceptions import HTTPFound, HTTPUnauthorized, HTTPBadRequest
@@ -35,7 +34,7 @@ class MotionSchema(Schema):
     participants = ForEach(validators.Int())
 
 
-@view_config(route_name='message_list', renderer='motionman:templates/message/message.pt')
+#@view_config(route_name='message_list', renderer='motionman:templates/message/message.pt')
 def message_list(request):
     motion_id = request.matchdict['id']
     

@@ -3,11 +3,11 @@
 <head>
   <title>Motion</title>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-  <link rel="shortcut icon" href="${request.static_url('motionman:static/favicon.ico')}" />
+  <link rel="shortcut icon" href="${request.static_path('motionman:static/favicon.ico')}" />
 </head>
 <body>
 <h1 align="center">New motion form</h1>
-${renderer.begin(request.route_url('motion_add'))}
+${renderer.begin(request.route_path('motion_add'))}
 <table id="optiontable" width="94%" style="border-style:dashed; border-width:1px; border-color:#0000cc;" align="center">
   <tr>
     <td width="100" align="right">Motion title:</td>
@@ -38,7 +38,7 @@ ${renderer.begin(request.route_url('motion_add'))}
 <br>
 <table width="94%" style="border-style:dashed; border-width:1px; border-color:#ffffff;" align="center">
   <tr>
-    <td align="center"><input type="submit" name="submit" value="  submit  ">&nbsp;&nbsp;<a href="${request.route_url('motion_list')}">motion list</a></td>
+    <td align="center"><input type="submit" name="submit" value="  submit  ">&nbsp;&nbsp;<a href="${request.route_path('motion_list')}">motion list</a></td>
   </tr>
 </table>
 ${renderer.end()}

@@ -4,7 +4,6 @@ Created on Aug 29, 2011
 @author: eric
 '''
 import logging
-import datetime
 import transaction
 
 from sqlalchemy.exc import IntegrityError

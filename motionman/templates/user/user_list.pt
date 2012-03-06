@@ -3,25 +3,34 @@
 <head>
   <title>User Admin</title>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-  <link rel="shortcut icon" href="${request.static_url('motionman:static/favicon.ico')}" />
+  <link rel="shortcut icon" href="${request.static_path('motionman:static/favicon.ico')}" />
 </head>
 <body>
 <h1>User Admin (user list)</h1>
-<a href="${request.route_url('user_list')}">user admin</a>  <a href="${request.route_url('setting_edit')}">settings</a>
+<a href="${request.route_path('user_list')}">user admin</a>
+<!--<a href="${request.route_path('setting_edit')}">settings</a>-->
 <br>
 <br>
 <br>
 <table >
+  <tr>
+    <th width=20>No.</th>
+    <th width=100>User Name</th>
+    <th width=200>Email</th>
+    <th width=20>Weight</th>
+    <th>Op</th>
+  </tr>
   <tr tal:repeat="item users">
       <td tal:content="repeat.item.number">1</td>
-      <td tal:content="item.name">Widget</td>
-      <td tal:content="item.email">$1.50</td>
+      <td tal:content="item.name">name</td>
+      <td tal:content="item.email">email</td>
+      <td tal:content="item.vote_weight">5</td>
       <td>
-        [<a href="#" tal:attributes="href string:${request.route_url('user_edit', id=item.id)}">edit</a>]
-        [<a href="#" tal:attributes="href string:${request.route_url('user_delete', id=item.id)}">delete</a>]
+        [<a href="#" tal:attributes="href string:${request.route_path('user_edit', id=item.id)}">edit</a>]
+        [<a href="#" tal:attributes="href string:${request.route_path('user_delete', id=item.id)}">delete</a>]
       </td>
   </tr>
 </table>
-<a href="${request.route_url('user_add')}">add a user</a>
+<a href="${request.route_path('user_add')}">add a user</a>
 </body>
 </html>

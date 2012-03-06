@@ -5,7 +5,7 @@ Created on Aug 30, 2011
 '''
 from pyramid.response import Response
 from pyramid.view import view_config
-from pyramid.url import route_url
+from pyramid.url import route_path
 from formencode import Schema, validators
 
 from pyramid.httpexceptions import HTTPFound
@@ -65,7 +65,7 @@ def edit(request):
                 update_setting(setting.name, "", my.mail_template)
             
             
-        return HTTPFound(location=route_url("setting_edit", request))
+        return HTTPFound(location=route_path("setting_edit", request))
 
     return dict(renderer=FormRenderer(form))
     

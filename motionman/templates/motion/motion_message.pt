@@ -3,13 +3,13 @@
 <head>
   <title>Motion</title>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-  <link rel="shortcut icon" href="${request.static_url('motionman:static/favicon.ico')}" />
+  <link rel="shortcut icon" href="${request.static_path('motionman:static/favicon.ico')}" />
 </head>
 <body>
 <h1 align="center">Motion messages</h1>
 <table width="94%" style="border-style:dashed; border-width:1px; border-color:#ffffff;" align="center">
   <tr>
-    <td align="right"><a href="/motion/list" tal:attributes="href request.route_url('motion_list')">Back to motions<a></td>
+    <td align="right"><a href="/motion/list" tal:attributes="href request.route_path('motion_list')">Back to motions<a></td>
   </tr>
 </table>
 <table width="94%" style="border-style:dashed; border-width:1px; border-color:#0000cc;" align="center">
@@ -83,7 +83,7 @@
   <tr>
     <td>&nbsp;</td>
     <td colspan=2>
-      <form action="/motion/message/1" method="post" tal:attributes="action request.route_url('motion_message', id=motion.id)">
+      <form action="/motion/message/1" method="post" tal:attributes="action request.route_path('motion_message', id=motion.id)">
         <textarea name="message" cols=90 rows=6></textarea><br/>
         <input type="submit" name="submit" value="  submit  ">
       </form>

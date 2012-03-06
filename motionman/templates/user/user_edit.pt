@@ -3,15 +3,16 @@
 <head>
   <title>User Admin</title>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-  <link rel="shortcut icon" href="${request.static_url('motionman:static/favicon.ico')}" />
+  <link rel="shortcut icon" href="${request.static_path('motionman:static/favicon.ico')}" />
 </head>
 <body>
 <h1>User Admin</h1>
-<a href="${request.route_url('user_list')}">user admin</a>  <a href="${request.route_url('setting_edit')}">settings</a>
+<a href="${request.route_path('user_list')}">user admin</a>
+<!--<a href="${request.route_path('setting_edit')}">settings</a>-->
 <br>
 <br>
 <br>
-${renderer.begin(request.route_url('user_edit', id=request.matchdict['id']))}
+${renderer.begin(request.route_path('user_edit', id=request.matchdict['id']))}
   <fieldset>
     <legend>User properties:</legend>
     email:${renderer.text("email", size=64)}${renderer.errorlist("email")}<br />

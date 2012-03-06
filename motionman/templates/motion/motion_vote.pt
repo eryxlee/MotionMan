@@ -3,11 +3,11 @@
 <head>
   <title>Motion Vote</title>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-  <link rel="shortcut icon" href="${request.static_url('motionman:static/favicon.ico')}" />
+  <link rel="shortcut icon" href="${request.static_path('motionman:static/favicon.ico')}" />
 </head>
 <body>
 <h1 align="center" tal:condition="participant.status==2">Opportunity used, please wait for the last result.</h1>
-<p align="center" tal:condition="participant.status==2"><a href="${request.route_url('motion_list')}">motions</a></p>
+<p align="center" tal:condition="participant.status==2"><a href="${request.route_path('motion_list')}">motions</a></p>
 <h1 align="center" tal:condition="participant.status==1">Please vote on this topic</h1>
 <form name="voteform" action="/motion/vote/${motion.id}/${request.matchdict['chips']}" tal:condition="participant.status==1">
 <table width="94%" style="border-style:dashed; border-width:1px; border-color:#0000cc;" align="center">

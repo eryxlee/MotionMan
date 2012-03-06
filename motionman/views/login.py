@@ -9,7 +9,7 @@ from motionman.security import USERS
 
 @view_config(route_name='login', renderer='motionman:templates/login.pt')
 def login(request):
-    login_url = request.route_url('login')
+    login_url = request.route_path('login')
     referrer = request.url
     if referrer == login_url:
         referrer = '/' # never use the login form itself as came_from
@@ -28,7 +28,7 @@ def login(request):
 
     return dict(
         message = message,
-        url = request.application_url + '/login',
+        url = '/login',
         came_from = came_from,
         login = login,
         password = password,
@@ -37,6 +37,6 @@ def login(request):
 @view_config(route_name='logout')
 def logout(request):
     headers = forget(request)
-    return HTTPFound(location = request.route_url('view_wiki'),
+    return HTTPFound(location = request.route_path('login'),
                      headers = headers)
     
