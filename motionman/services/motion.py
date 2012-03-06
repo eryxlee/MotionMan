@@ -9,7 +9,7 @@ import random
 import transaction
 
 from sqlalchemy.exc import DataError
-from sqlalchemy import and_, or_
+from sqlalchemy import and_, or_, desc
 
 from motionman.models import DBSession
 from motionman.models import User, Motion, MotionOption, MotionParticipant
@@ -18,10 +18,22 @@ log = logging.getLogger(__name__)
 
 CHIP_PATTERN = 'abcdefghijklmnopqrstuvwxyz1234567890'
 
-def load_motions():
+def load_motions(offset, limit):
     session = DBSession()
     
-    return session.query(Motion).filter(Motion.status==1).all()
+    motion_list = session.query(Motion).filter(Motion.status<>0).order_by(desc(Motion.create_time))
+
+    if offset:
+        motion_list = motion_list.offset(offset)
+    if limit:
+        motion_list = motion_list.limit(limit)
+    
+    return motion_list.all()
+
+def get_motions_count():
+    session = DBSession()
+    
+    return session.query(Motion).filter(Motion.status<>0).count()    
 
 def load_motion(motion_id):
     session = DBSession()

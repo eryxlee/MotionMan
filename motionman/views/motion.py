@@ -5,7 +5,7 @@ Created on Aug 31, 2011
 '''
 
 from pyramid.view import view_config
-from pyramid.url import route_url
+from pyramid.url import route_path
 
 from formencode import Schema, validators, ForEach
 from pyramid.httpexceptions import HTTPFound, HTTPUnauthorized, HTTPBadRequest
@@ -13,7 +13,7 @@ from pyramid_simpleform import Form
 from pyramid_simpleform.renderers import FormRenderer
 
 from motionman.services.user import load_users
-from motionman.services.motion import add_motion, load_motions, load_motion
+from motionman.services.motion import add_motion, get_motions_count, load_motions, load_motion
 from motionman.services.motion import get_motion_participant_by_chips, save_vote_result
 from motionman.services.message import add_message
 
@@ -60,14 +60,38 @@ def motion_add(request):
 
         add_motion(title, desc, options, users)
 
-        return HTTPFound(location=route_url('motion_list', request))
+        return HTTPFound(location=route_path('motion_list', request))
         
     return dict(renderer=FormRenderer(form), all_user_options=all_user_options)
 
 @view_config(route_name='motion_list', renderer='motionman:templates/motion/motion_list.pt')
 @view_config(route_name='home', renderer='motionman:templates/motion/motion_list.pt')
 def motion_list(request):
-    return dict(motions = load_motions())
+    page_input = request.params.get('page')
+    
+    page = 0
+    try:
+        page = int(page_input)
+    except: pass
+    if not page: page = 1
+    
+    count = get_motions_count()
+
+    rows_per_page = 5
+    
+    offset = (page - 1) * rows_per_page
+    pages = count / rows_per_page
+    if count % rows_per_page <> 0:
+        pages += 1
+
+    first_page = False
+    last_page = False
+    if page == 1:
+        first_page = True
+    if (rows_per_page * page) >= count:
+        last_page = True
+    
+    return dict(motions=load_motions(offset, rows_per_page), page=page, pages=pages, first_page=first_page, last_page=last_page)
 
 @view_config(route_name='motion_vote', renderer='motionman:templates/motion/motion_vote.pt')
 def motion_vote(request):
@@ -86,7 +110,7 @@ def motion_vote(request):
     if request.params.get('submit'):
         vote_result = request.params.get("vote")
         save_vote_result(motion_id, vote_result, chips)
-        return HTTPFound(location=route_url('motion_vote', request, 
+        return HTTPFound(location=route_path('motion_vote', request, 
                                                 id=motion_id, chips=chips))
     
     return dict(motion=motion, participant=participant)
